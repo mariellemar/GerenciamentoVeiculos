@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listagem dos veículos</title>
+</head>
+<body>
+    <h1>Todos os veículos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Diária</th>
+                <th>Tipo</th>
+                <th>Combustível</th>
+                <th>Cilindradas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for dado in dados %}
+            <tr>
+                <td>
+                    {{ dado.id }}
+                </td>
+                <td>
+                    {{ dado.modelo }}
+                </td>
+                <td>
+                    {{ dado.ano }}
+                </td>
+                <td>
+                    {{ dado.diaria }}
+                </td>
+                <td>
+                    {{ dado.tipo }}
+                </td>
+                <td>
+                    {{ dado.combustivel }}
+                </td>
+                <td>
+                    {{ dado.cilindradas }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
