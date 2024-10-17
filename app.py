@@ -51,7 +51,7 @@ def alugar_carros():
 
 @app.route('/alugar_motocicletas')
 def alugar_motocicletas():
-    motocicletas, _ = ler_dados
+    motocicletas, _ = ler_dados()
     return render_template('motocicleta.html', motocicletas=motocicletas)
 
 

@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
     <title>Listagem dos veículos</title>
 </head>
 <body>
-    <h1>Todos os veículos</h1>
+    <h1>Veículos</h1>
     <table>
         <thead>
             <tr>
@@ -18,6 +19,7 @@
                 <th>Combustível</th>
                 <th>Cilindradas</th>
                 <th>Alugado</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -28,17 +30,14 @@
                 <td>{{ dado.ano }}</td>
                 <td>{{ dado.diaria }}</td>
                 <td>{{ dado.tipo }}</td>
-                <td></td> <!-- Combustível não aplicável para motocicletas -->
+                <td></td>
                 <td>{{ dado.cilindradas }}</td>
                 <td>{{ 'Sim' if dado.alugado else 'Não' }}</td>
                 <td>
-                    {% if not dado.alugado %}
-                        <form action="/alugar/{{ dado.id }}" method="post">
-                            <input type="submit" value="Alugar">
-                        </form>
-                    {% else %}
-                        <button disabled>Alugado</button>
-                    {% endif %}
+                    <a href="/editar/{{ dado.id }}"><button>Editar</button></a>
+                    <form action="/remover/{{ dado.id }}" method="post" style="display:inline;">
+                        <input type="submit" value="Remover">
+                    </form>
                 </td>
             </tr>
             {% endfor %}
@@ -53,17 +52,15 @@
                 <td></td> <!-- Cilindrada não aplicável para carros -->
                 <td>{{ 'Sim' if dado.alugado else 'Não' }}</td>
                 <td>
-                    {% if not dado.alugado %}
-                        <form action="/alugar/{{ dado.id }}" method="post">
-                            <input type="submit" value="Alugar">
-                        </form>
-                    {% else %}
-                        <button disabled>Alugado</button>
-                    {% endif %}
+                    <a href="/editar/{{ dado.id }}"><button>Editar</button></a>
+                    <form action="/remover/{{ dado.id }}" method="post" style="display:inline;">
+                        <input type="submit" value="Remover">
+                    </form>
                 </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    <a href="/adicionar_veiculo"><button>Adicionar Veículo</button></a>
 </body>
 </html>
