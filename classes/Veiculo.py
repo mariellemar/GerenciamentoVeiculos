@@ -33,4 +33,29 @@ class Veiculo():
     @diaria.setter
     def diaria(self, nova_diaria):
         self.__diaria = nova_diaria       
-        
+    
+    
+    def __str__(self):
+        return f'{self.modelo}, {self.ano} - Diaria: R${self.diaria:.2f}'
+    
+    
+    def aluguel(self, dias: int, desconto=0):
+        return self.diaria * dias - desconto
+    
+    
+    @classmethod
+    def exibir_total(cls, veiculos: list):
+        if cls.veiculos:
+            print(f'{cls.veiculos} Veiculos Alugados: \n')
+            for i, veiculo in enumerate(veiculos):
+                print(f'{i+1} - {veiculo.__str__()}')
+        else:
+            print("Sem veiculos alugados")
+            
+    
+    @classmethod
+    def aumento(cls, veiculos: list, aumento: float):
+        for veiculo in veiculos:
+            valor = veiculo.diaria + aumento
+            veiculo.diaria = valor
+            
