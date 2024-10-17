@@ -7,20 +7,35 @@
 </head>
 <body>
     <h1>Aluguel de motocicleta:</h1>
-    <form>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required>
-        
-        <label for="ano">Ano:</label>
-        <input type="number" id="ano" name="ano" required>
-
-        <label for="diaria">Diária:</label>
-        <input type="number" id="diaria" name="diaria" required>
-
-        <label for="cc">Cilindradas:</label>
-        <input type="number" id="cc" name="cc" required>
-
-        <input type="submit" value="Alugar">
-    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Modelo</th>
+                <th>Ano</th>
+                <th>Diária</th>
+                <th>Cilindradas</th>
+                <th>Alugar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for motocicleta in motocicletas %}
+            <tr>
+                <td>{{ motocicleta.modelo }}</td>
+                <td>{{ motocicleta.ano }}</td>
+                <td>R$ {{ motocicleta.diaria }}</td>
+                <td>{{ motocicleta.cilindradas }}</td>
+                <td>
+                    {% if motocicleta.alugado %}
+                        <button disabled>Alugado</button>
+                    {% else %}
+                        <form action="/alugar/{{ motocicleta.id }}" method="post">
+                            <button type="submit">Alugar</button>
+                        </form>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

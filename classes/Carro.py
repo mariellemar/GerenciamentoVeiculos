@@ -2,7 +2,7 @@ from .Veiculo import Veiculo
 
 class Carro(Veiculo):
     def __init__(self, modelo: str, ano: int,
-                 diaria: float, combustivel: float):
+                 diaria: float, combustivel: str):
         super().__init__(modelo, ano, diaria)
         self.__combustivel = combustivel
         
