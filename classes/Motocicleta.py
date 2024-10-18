@@ -1,6 +1,6 @@
 from .Veiculo import Veiculo
 
-class Carro(Veiculo):
+class Motocicleta(Veiculo):
     def __init__(self, modelo: str, ano: int,
                  diaria: float, cilindrada: int):
         super().__init__(modelo, ano, diaria)
@@ -20,7 +20,7 @@ class Carro(Veiculo):
         return f'{super().__str__()} - Cilindrada: {self.cilindrada}'
     
     
-    def aluguel(self, dias: int, desconto=0):
+    def aluguel(self, dias: int, desconto=0, cupom=0):
         if self.cilindrada >= 200:
             self.diaria += 20
         

@@ -1,0 +1,10 @@
+Ford Mustang,2020,300.00,Carro,Gasolina,
+Chevrolet Camaro,2019,290.00,Carro,Gasolina,
+Toyota Hilux,2021,350.00,Carro,Diesel,
+Honda Accord,2018,220.00,Carro,Gasolina,
+Nissan Sentra,2020,210.00,Carro,Gasolina,
+BMW S1000RR,2021,200.00,Motocicleta,,999
+Kawasaki Z1000,2022,220.00,Motocicleta,,1000
+Honda CBR600RR,2020,190.00,Motocicleta,,600
+Yamaha MT-09,2019,180.00,Motocicleta,,847
+Suzuki V-Strom 650,2021,210.00,Motocicleta,,650

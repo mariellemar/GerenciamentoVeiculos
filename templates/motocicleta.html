@@ -21,10 +21,10 @@
         <tbody>
             {% for motocicleta in motocicletas %}
             <tr>
-                <td>{{ motocicleta.modelo }}</td>
-                <td>{{ motocicleta.ano }}</td>
-                <td>R$ {{ motocicleta.diaria }}</td>
-                <td>{{ motocicleta.cilindradas }}</td>
+                <td>{{ motocicleta.veiculo.modelo }}</td>
+                <td>{{ motocicleta.veiculo.ano }}</td>
+                <td>R$ {{ "{:.2f}".format(motocicleta.veiculo.diaria) }}</td>
+                <td>{{ motocicleta.veiculo.cilindrada }}</td>
                 <td>
                     {% if motocicleta.alugado %}
                         <button disabled>Alugado</button>

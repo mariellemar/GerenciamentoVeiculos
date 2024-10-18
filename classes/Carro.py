@@ -20,8 +20,8 @@ class Carro(Veiculo):
         return f'{super().__str__()} - Combustivel: {self.combustivel}'
     
     
-    def aluguel(self, dias: int, desconto=0):
+    def aluguel(self, dias: int, desconto=0, cupom=0):
         if dias > 7:
             desconto = 70
         
-        return super().aluguel(dias, desconto)
+        return super().aluguel(dias, desconto+cupom)

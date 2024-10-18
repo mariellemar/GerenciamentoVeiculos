@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Confirmação do Aluguel</title>
+</head>
+<body>
+    <h1>Confirmação do Aluguel</h1>
+    <p>Você selecionou {{ veiculo.modelo }} por {{ dias }} dias.</p>
+    <p>Desconto aplicado: R$ {{ desconto }}.</p>
+    <p>Total a pagar: R$ {{ total }}.</p>
+
+    <br>
+    <form action="/" method="GET">
+        <input type="submit" value="Voltar para a Página Inicial">
+    </form>
+</body>
+</html>

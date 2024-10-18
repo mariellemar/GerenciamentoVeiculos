@@ -21,10 +21,10 @@
         <tbody>
             {% for carro in carros %}
             <tr>
-                <td>{{ carro.modelo }}</td>
-                <td>{{ carro.ano }}</td>
-                <td>R$ {{ carro.diaria }}</td>
-                <td>{{ carro.combustivel }}</td>
+                <td>{{ carro.veiculo.modelo }}</td>
+                <td>{{ carro.veiculo.ano }}</td>
+                <td>R$ {{ "{:.2f}".format(carro.veiculo.diaria) }}</td>
+                <td>{{ carro.veiculo.combustivel }}</td>
                 <td>
                     {% if carro.alugado %}
                         <button disabled>Alugado</button>

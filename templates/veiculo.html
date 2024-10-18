@@ -26,12 +26,12 @@
             {% for dado in motocicletas %}
             <tr>
                 <td>{{ dado.id }}</td>
-                <td>{{ dado.modelo }}</td>
-                <td>{{ dado.ano }}</td>
-                <td>{{ dado.diaria }}</td>
-                <td>{{ dado.tipo }}</td>
+                <td>{{ dado.veiculo.modelo }}</td>
+                <td>{{ dado.veiculo.ano }}</td>
+                <td>R$ {{ "{:.2f}".format(dado.veiculo.diaria) }}</td>
+                <td>Motocicleta</td>
                 <td></td>
-                <td>{{ dado.cilindradas }}</td>
+                <td>{{ dado.veiculo.cilindrada }}</td>
                 <td>{{ 'Sim' if dado.alugado else 'Não' }}</td>
                 <td>
                     <a href="/editar/{{ dado.id }}"><button>Editar</button></a>
@@ -44,11 +44,11 @@
             {% for dado in carros %}
             <tr>
                 <td>{{ dado.id }}</td>
-                <td>{{ dado.modelo }}</td>
-                <td>{{ dado.ano }}</td>
-                <td>{{ dado.diaria }}</td>
-                <td>{{ dado.tipo }}</td>
-                <td>{{ dado.combustivel }}</td>
+                <td>{{ dado.veiculo.modelo }}</td>
+                <td>{{ dado.veiculo.ano }}</td>
+                <td>R$ {{ "{:.2f}".format(dado.veiculo.diaria) }}</td>
+                <td>Carro</td>
+                <td>{{ dado.veiculo.combustivel }}</td>
                 <td></td> <!-- Cilindrada não aplicável para carros -->
                 <td>{{ 'Sim' if dado.alugado else 'Não' }}</td>
                 <td>

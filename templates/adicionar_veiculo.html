@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
+    <title>Adicionar Veículo</title>
+    <script>
+        function toggleFields() {
+            const tipoVeiculo = document.getElementById('tipo_veiculo').value;
+            const cilindradaField = document.getElementById('cilindrada');
+            const combustivelField = document.getElementById('combustivel');
+
+            if (tipoVeiculo === 'Motocicleta') {
+                cilindradaField.disabled = false;
+                combustivelField.disabled = true;
+                combustivelField.value = ''; // Limpa o campo de combustível
+            } else if (tipoVeiculo === 'Carro') {
+                combustivelField.disabled = false;
+                cilindradaField.disabled = true;
+                cilindradaField.value = ''; // Limpa o campo de cilindrada
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Adicionar Veículo</h1>
+    <form action="/adicionar_veiculo" method="POST">
+        <label for="tipo_veiculo">Tipo de Veículo:</label>
+        <select id="tipo_veiculo" name="tipo_veiculo" onchange="toggleFields()" required>
+            <option value="">Selecione</option>
+            <option value="Carro">Carro</option>
+            <option value="Motocicleta">Motocicleta</option>
+        </select><br>
+        <label for="modelo">Modelo do Veículo:</label>
+        <input type="text" id="modelo" name="modelo" required><br>
+
+        <label for="ano">Ano:</label>
+        <input type="number" name="ano" required><br>
+
+        <label for="diaria">Valor Diário:</label>
+        <input type="number" name="diaria" step="0.01" required><br>
+
+        <label for="cilindrada">Cilindrada (apenas para motos):</label>
+        <input type="number" name="cilindrada" id="cilindrada" disabled><br>
+
+        <label for="combustivel">Combustível:</label>
+        <select id="combustivel" name="combustivel" required disabled>
+            <option value="Gasolina">Gasolina</option>
+            <option value="Alcool">Álcool</option>
+            <option value="Diesel">Diesel</option>
+            <option value="Flex">Flex</option>
+        </select>
+        <br>
+        <br>
+
+        <input type="submit" value="Adicionar Veículo">
+    </form>
+</body>
+</html>

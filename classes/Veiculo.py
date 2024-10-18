@@ -39,8 +39,11 @@ class Veiculo():
         return f'{self.modelo}, {self.ano} - Diaria: R${self.diaria:.2f}'
     
     
-    def aluguel(self, dias: int, desconto=0):
-        return self.diaria * dias - desconto
+    def aluguel(self, dias: int, desconto=0, cupom=0):
+        total = self.diaria * dias - desconto
+        if cupom > 0:
+            total -= cupom
+        return total
     
     
     @classmethod
