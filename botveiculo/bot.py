@@ -1,87 +1,14 @@
 from botcity.web import WebBot, Browser, By
 from botcity.maestro import *
-from botcity.web.util import element_as_select
 from webdriver_manager.chrome import ChromeDriverManager
 
+import random
+
+from navegacao import Navegacao
+from gerenciador_veiculo import GerenciadorVeiculos
+from aluguel import Aluguel
+
 BotMaestroSDK.RAISE_NOT_CONNECTED = False
-
-def navegar_adicionar(bot:WebBot):
-    bot.browse("http://127.0.0.1:5000")
-
-    pagina_listagem = bot.find_element('/html/body/ul/li[3]/a/button', By.XPATH)
-    pagina_listagem.click()
-
-    bot.wait(1000)
-
-    pagina_adicionar = bot.find_element('/html/body/a/button', By.XPATH)
-    pagina_adicionar.click()
-
-
-
-def ler_veiculos_inserir(bot:WebBot):
-    caminho = r"C:\Users\matutino\Desktop\COO com Python\GerenciamentoVeiculos\veiculos.txt"
-    with open(caminho, 'r') as arquivo:
-        veiculos = arquivo.readlines()
-        veiculos = [linha.strip() for linha in veiculos]
-
-        return veiculos
-            
-
-def adicionar_veiculo(bot:WebBot, veiculo):
-        partes = veiculo.split(',')
-
-        modelo = partes[0]
-        ano = partes[1]
-        diaria = partes[2]
-        tipo = partes[3]
-        combustivel = partes [4]
-        cilindrada = partes[5]
-
-        elemento_select_tipo = bot.find_element(selector='tipo_veiculo', by=By.ID)
-        select_tipo = element_as_select(elemento_select_tipo)
-        select_tipo.select_by_value(f'{tipo}')
-
-        bot.wait(500)
-
-        campo_modelo = bot.find_element('//*[@id="modelo"]', By.XPATH)
-        campo_modelo.click()
-        campo_modelo.send_keys(modelo)
-
-        bot.wait(500)
-
-        campo_ano = bot.find_element('/html/body/form/input[2]', By.XPATH)
-        campo_ano.click()
-        campo_ano.send_keys(ano)
-
-        bot.wait(500)
-
-        campo_diaria = bot.find_element('/html/body/form/input[3]', By.XPATH)
-        campo_diaria.click()
-        campo_diaria.send_keys(diaria)
-
-        bot.wait(500)
-
-        if tipo == 'Carro':
-            elemento_select_combustivel = bot.find_element(selector='combustivel', by=By.ID)
-            select_tipo = element_as_select(elemento_select_combustivel)
-            select_tipo.select_by_value(f'{combustivel}')
-
-            bot.wait(500)
-
-        else:
-             campo_cilindrada = bot.find_element('//*[@id="cilindrada"]', By.XPATH)
-             campo_cilindrada.click()
-             campo_cilindrada.send_keys(cilindrada)
-
-             bot.wait(500)
-
-        botao_adicionar = bot.find_element('/html/body/form/input[5]', By.XPATH)
-        botao_adicionar.click()
-
-
-def navegar_alugar_carro(bot:WebBot):
-     pass
-
 
 
 def main():
@@ -94,19 +21,83 @@ def main():
     bot = WebBot()
     bot.headless = False
     bot.browser = Browser.CHROME
-    bot.driver_path = ChromeDriverManager
+    bot.driver_path = ChromeDriverManager().install()
 
+    bot.browse("http://127.0.0.1:5000")
+    
+    # caminho = r"C:\Users\matutino\Desktop\COO com Python\GerenciamentoVeiculos\veiculos.txt"
+    caminho = r"C:\Users\marie\OneDrive\Área de Trabalho\Projetos\GerenciamentoVeiculos\veiculos_inserir.txt"
+        
+    navegacao = Navegacao(bot)
+    gerenciador = GerenciadorVeiculos(bot)
+    aluguel = Aluguel(bot)
+    
+    
     # Adicionar Veiculos
-
-    navegar_adicionar(bot)
-    veiculos = ler_veiculos_inserir(bot)
+    bot.wait(1000)
+    navegacao.navegar_listagem()
+    veiculos = gerenciador.ler_veiculos_inserir()
     for veiculo in veiculos:
-            adicionar_veiculo(bot, veiculo)
+            navegacao.navegar_adicionar()
+            gerenciador.adicionar_veiculo(veiculo)
+            bot.wait(500)
 
 
     # Alugar Carro
-    navegar_alugar_carro(bot)
+    
+    navegacao.navegar_home()
+    navegacao.navegar_alugar_carro()
+    
+    dias_desconto_carros = [[21], [6, 30]]
+    
+    for i in range(len(dias_desconto_carros)):
+        
+        with open(caminho, 'r') as arquivo:
+            veiculos = arquivo.readlines()
+            veiculos = [linha.strip() for linha in veiculos]
+            
+        carros = [linha for linha in veiculos if linha.split(',')[4] == 'Carro']
+            
+        id_aleatorio_carro = random.choice(carros).split(',')[0]
+        
+        aluguel.alugar_carro_id(id_aleatorio_carro)
+        
+        if len(dias_desconto_carros[i]==2):
+            aluguel.preencher_campos(dias_desconto_carros[i][0], dias_desconto_carros[i][1])
+        else:
+            aluguel.preencher_campos(dias_desconto_carros[i][0])
+            
+        aluguel.confirmar_aluguel()
+    
+    # Alugar Moto
 
+    navegacao.navegar_home()
+    navegacao.navegar_alugar_moto()
+    
+    dias_desconto_motos = [[9], [14, 45]]
+    
+    for i in range(len(dias_desconto_motos)):
+        
+        with open(caminho, 'r') as arquivo:
+            veiculos = arquivo.readlines()
+            veiculos = [linha.strip() for linha in veiculos]
+            
+        motos = [linha for linha in veiculos if linha.split(',')[4] == 'Motocicleta']
+        
+        id_aleatorio_moto = random.choice(motos).split(',')[0]
+        
+        aluguel.alugar_moto_id(id_aleatorio_moto)
+        
+        if len(dias_desconto_motos[i]==2):
+            aluguel.preencher_campos(dias_desconto_motos[i][0], dias_desconto_motos[i][1])
+        else:
+            aluguel.preencher_campos(dias_desconto_motos[i][0])
+            
+        aluguel.confirmar_aluguel()
+    
+    navegacao.navegar_home
+    navegacao.navegar_listagem
+    
     bot.wait(3000)
 
     bot.stop_browser()

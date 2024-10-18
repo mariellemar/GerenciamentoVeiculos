@@ -4,7 +4,7 @@
 140,Suzuki GSX-S750,2019,160.00,Motocicleta,,750,False
 171,BMW G 310 R,2021,140.00,Motocicleta,,310,False
 812,Ducati Monster 797,2021,180.00,Motocicleta,,797,False
-789,Ford Fiesta,2015,150.00,Carro,Gasolina,,False
+789,Ford Fiesta,2015,150.00,Carro,Gasolina,,True
 255,Honda Civic,2018,180.00,Carro,Gasolina,,False
 362,Chevrolet Onix,2020,130.00,Carro,Flex,,False
 400,Volkswagen Gol,2016,140.00,Carro,Flex,,False
@@ -13,5 +13,4 @@
 774,Renault Sandero,2017,135.00,Carro,Alcool,,False
 719,Ford Ka,2018,125.00,Carro,Flex,,False
 591,Jeep Renegade,2022,210.00,Carro,Diesel,,False
-346,AAAAA,2020,110,Carro,diesel,,False
-563,asd,231,233,Carro,None,,False
+

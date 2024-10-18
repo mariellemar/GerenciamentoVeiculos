@@ -8,13 +8,13 @@
 </head>
 <body>
     <h1>Confirmação do Aluguel</h1>
-    <p>Você selecionou {{ veiculo.modelo }} por {{ dias }} dias.</p>
-    <p>Desconto aplicado: R$ {{ desconto }}.</p>
-    <p>Total a pagar: R$ {{ total }}.</p>
+    <p class="confirmacao-texto">Você selecionou {{ veiculo.modelo }} por {{ dias }} dias.</p>
+    <p class="confirmacao-texto">Desconto aplicado: R$ {{ desconto }}.</p>
+    <p class="confirmacao-texto">Total a pagar: R$ {{ total }}.</p>
 
     <br>
     <form action="/" method="GET">
-        <input type="submit" value="Voltar para a Página Inicial">
+        <input type="submit" value="Confirmar">
     </form>
 </body>
 </html>

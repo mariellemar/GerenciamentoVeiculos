@@ -34,7 +34,6 @@
                 <td>{{ dado.veiculo.cilindrada }}</td>
                 <td>{{ 'Sim' if dado.alugado else 'Não' }}</td>
                 <td>
-                    <a href="/editar/{{ dado.id }}"><button>Editar</button></a>
                     <form action="/remover/{{ dado.id }}" method="post" style="display:inline;">
                         <input type="submit" value="Remover">
                     </form>
@@ -62,5 +61,7 @@
         </tbody>
     </table>
     <a href="/adicionar_veiculo"><button>Adicionar Veículo</button></a>
+    <br>
+    <a href="/"><button>Página Inicial</button></a>
 </body>
 </html>
