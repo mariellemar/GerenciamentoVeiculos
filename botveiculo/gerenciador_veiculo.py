@@ -27,7 +27,7 @@ class GerenciadorVeiculos():
     
     
     def selecionar_tipo(self, tipo:str):
-        elemento_select_tipo = self.bot.find_element(selector='tipo_veiculo', by=By.ID)
+        elemento_select_tipo = self.bot.find_element(selector='//*[@id="tipo_veiculo"]', by=By.XPATH)
         select_tipo = element_as_select(elemento_select_tipo)
         select_tipo.select_by_value(f'{tipo}')
 

@@ -19,7 +19,6 @@
                 <th>Combustível</th>
                 <th>Cilindradas</th>
                 <th>Alugado</th>
-                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -33,11 +32,6 @@
                 <td></td>
                 <td>{{ dado.veiculo.cilindrada }}</td>
                 <td>{{ 'Sim' if dado.alugado else 'Não' }}</td>
-                <td>
-                    <form action="/remover/{{ dado.id }}" method="post" style="display:inline;">
-                        <input type="submit" value="Remover">
-                    </form>
-                </td>
             </tr>
             {% endfor %}
             {% for dado in carros %}
@@ -50,12 +44,6 @@
                 <td>{{ dado.veiculo.combustivel }}</td>
                 <td></td> <!-- Cilindrada não aplicável para carros -->
                 <td>{{ 'Sim' if dado.alugado else 'Não' }}</td>
-                <td>
-                    <a href="/editar/{{ dado.id }}"><button>Editar</button></a>
-                    <form action="/remover/{{ dado.id }}" method="post" style="display:inline;">
-                        <input type="submit" value="Remover">
-                    </form>
-                </td>
             </tr>
             {% endfor %}
         </tbody>

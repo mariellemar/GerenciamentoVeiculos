@@ -22,7 +22,7 @@
         <tbody>
             {% for motocicleta in motocicletas %}
             <tr>
-                <td>{{ carro.id }}</td>
+                <td>{{ motocicleta.id }}</td>
                 <td>{{ motocicleta.veiculo.modelo }}</td>
                 <td>{{ motocicleta.veiculo.ano }}</td>
                 <td>R$ {{ "{:.2f}".format(motocicleta.veiculo.diaria) }}</td>

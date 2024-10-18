@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 
 def ler_dados():
-    with open('veiculos.txt', 'r') as arquivo:
+    with open(r'C:\Users\marie\OneDrive\Área de Trabalho\Projetos\GerenciamentoVeiculos\veiculos.txt', 'r') as arquivo:
         linhas = arquivo.readlines()
 
     motocicletas = []
@@ -34,10 +34,10 @@ def ler_dados():
 
 
 def atualizar_status_veiculo(veiculo_id, alugado_status):
-    with open('veiculos.txt', 'r') as arquivo:
+    with open(r'C:\Users\marie\OneDrive\Área de Trabalho\Projetos\GerenciamentoVeiculos\veiculos.txt', 'r') as arquivo:
         linhas = arquivo.readlines()
 
-    with open('veiculos.txt', 'w') as arquivo:
+    with open(r'C:\Users\marie\OneDrive\Área de Trabalho\Projetos\GerenciamentoVeiculos\veiculos.txt', 'w') as arquivo:
         for linha in linhas:
             id, modelo, ano, diaria, tipo, combustivel, cilindradas, alugado = linha.strip().split(',')
             if int(id) == veiculo_id:
@@ -132,7 +132,7 @@ def adicionar_veiculo():
 
         novo_id = gerar_id_unico()
 
-        with open('veiculos.txt', 'a') as arquivo:  # Use 'a' to append
+        with open(r'C:\Users\marie\OneDrive\Área de Trabalho\Projetos\GerenciamentoVeiculos\veiculos.txt', 'a') as arquivo:  # Use 'a' to append
             if tipo_veiculo == 'moto':
                 arquivo.write(f'{novo_id},{modelo},{ano},{diaria},Motocicleta,,{cilindrada},False\n')
             else:

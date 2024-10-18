@@ -28,14 +28,16 @@ class Aluguel():
         
         self.bot.find_element("dias", By.ID).send_keys(dias)
         if desconto:
-            self.bot.find_element("desconto").send_keys(desconto)
-            
+            self.bot.find_element("desconto", By.ID).send_keys(desconto)
+        
+        self.bot.wait(1000)     
         self.bot.find_element('/html/body/form/input[3]', By.XPATH).click()
         
         self.bot.wait(2000)
         
     
     def confirmar_aluguel(self):
-        self.bot.find_element('/html/body/form/input').click()
+        self.bot.find_element('/html/body/form/input', By.XPATH).click()
+        self.bot.wait(1000)
         
         
